@@ -5,6 +5,9 @@ using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using ApiWeb.Data;
 using ApiWeb.Models.Produto;
+using ApiWeb.Repositorios.Produto;
+using ApiWeb.ViewModels;
+using ApiWeb.ViewModels.Produto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,69 +16,117 @@ namespace ApiWeb.Controllers
     [ApiController]
     public class CategoriaController : Controller
     {
-        private readonly StoreDataContext _context;
+        private readonly CategoriaRepositorio _repositorio;
 
-        public CategoriaController(StoreDataContext context)
-        {            
-            _context = context;
+        public CategoriaController(CategoriaRepositorio repositorio)
+        {
+            _repositorio = repositorio;
         }
 
         #region HttpGet
         [Route("v1/categoria")]
         [HttpGet]
-        public IEnumerable<Categoria> GetAll()
+        public IEnumerable<lstCategoriaViewModel> GetAll()
         {
-            return _context.Categorias.AsNoTracking().ToList();
+            return _repositorio.GetAll();
         }
 
         [Route("v1/categoria/{id}")]
         [HttpGet]
         public Categoria Get(int id)
         {
-            return _context.Categorias.AsNoTracking().Where(categoria => categoria.Id == id)?.First();
+            return _repositorio.Get(id);
         }
 
         [Route("v1/categoria/{id}/produtos")]
         [HttpGet]
-        public IEnumerable<Produto> GetAllProdutos(int id)
+        public IEnumerable<lstProdutoViewModel> GetAllProdutos(int id)
         {
-            return _context.Produtos.AsNoTracking().Where(produto => produto.CategoriaId == id)?.ToList();
+            return _repositorio.GetAllProdutosPorCategoria(id);
         }
         #endregion
 
         #region HttpPost
         [Route("v1/categoria")]
         [HttpPost]
-        public Categoria Post([FromBody] Categoria categoria)
+        public ResultViewModel Post([FromBody] EdtCategoriaViewModel model)
         {
-            _context.Categorias.Add(categoria);
-            _context.SaveChanges();
+            model.Validate();
+            if (model.Invalid)
+            {
+                return new ResultViewModel
+                {
+                    Mensagem = "Não foi possível cadastrar a categoria!",
+                    Data = model.Notifications
+                };
+            }
 
-            return categoria;
+            Categoria categoria = new Categoria();
+            categoria.Titulo = model.Titulo;
+
+            _repositorio.Save(categoria);
+
+            return new ResultViewModel
+            {
+                Sucesso = true,
+                Mensagem = "Categoria cadastrada com sucesso!",
+                Data = categoria
+            };
         }
         #endregion
 
         #region HttpPut
         [Route("v1/categoria")]
         [HttpPut]
-        public Categoria Put([FromBody] Categoria categoria)
+        public ResultViewModel Put([FromBody] EdtCategoriaViewModel model)
         {
-            _context.Entry(categoria).State = EntityState.Modified;
-            _context.SaveChanges();
+            model.Validate();
+            if (model.Invalid)
+            {
+                return new ResultViewModel
+                {
+                    Mensagem = "Não foi possível alterar o categoria!",
+                    Data = model.Notifications
+                };
+            }
 
-            return categoria;
+            Categoria categoria = _repositorio.Get(model.Id);
+            categoria.Titulo = model.Titulo;            
+
+            _repositorio.Update(categoria);
+
+            return new ResultViewModel
+            {
+                Sucesso = true,
+                Mensagem = "Categoria alterada com sucesso!",
+                Data = categoria
+            };
         }
         #endregion
 
         #region HttpDelete
         [Route("v1/categoria")]
         [HttpDelete]
-        public Categoria Delete([FromBody] Categoria categoria)
+        public ResultViewModel Delete([FromBody] EdtCategoriaViewModel model)
         {
-            _context.Categorias.Remove(categoria);
-            _context.SaveChanges();
+            Categoria categoria = _repositorio.Get(model.Id);
 
-            return categoria;
+            if (categoria is null)
+            {
+                return new ResultViewModel
+                {
+                    Mensagem = "Categoria não encontrada!",
+                    Data = categoria
+                };
+            }
+
+            _repositorio.Delete(categoria);
+
+            return new ResultViewModel
+            {
+                Sucesso = true,
+                Mensagem = "Categoria excluída com sucesso!"
+            };
         }
         #endregion
     }

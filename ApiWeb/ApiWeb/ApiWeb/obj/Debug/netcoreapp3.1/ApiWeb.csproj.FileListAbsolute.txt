@@ -19,7 +19,6 @@ D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\bin\Debug\netcoreapp3.1\Microsoft.Exte
 D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
-D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\obj\Debug\netcoreapp3.1\ApiWeb.csprojAssemblyReference.cache
 D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\obj\Debug\netcoreapp3.1\ApiWeb.AssemblyInfoInputs.cache
 D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\obj\Debug\netcoreapp3.1\ApiWeb.AssemblyInfo.cs
 D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\obj\Debug\netcoreapp3.1\ApiWeb.RazorTargetAssemblyInfo.cache
@@ -60,5 +59,11 @@ D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\obj\Debug\netcoreapp3.1\ApiWeb.genrunt
 D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
 D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
 D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\bin\Debug\netcoreapp3.1\Flunt.dll
+D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\obj\Debug\netcoreapp3.1\ApiWeb.csprojAssemblyReference.cache
 D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\obj\Debug\netcoreapp3.1\ApiWeb.csproj.CoreCompileInputs.cache
+D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\obj\Debug\netcoreapp3.1\ApiWeb.MvcApplicationPartsAssemblyInfo.cs
 D:\Projetos\FirstAPI\ApiWeb\ApiWeb\ApiWeb\obj\Debug\netcoreapp3.1\ApiWeb.MvcApplicationPartsAssemblyInfo.cache

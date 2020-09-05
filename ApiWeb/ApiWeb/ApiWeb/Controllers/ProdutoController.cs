@@ -24,6 +24,7 @@ namespace ApiWeb.Controllers
         #region HttpGet
         [Route("v1/produto")]
         [HttpGet]
+        [ResponseCache(Duration = 15)]
         public IEnumerable<lstProdutoViewModel> GetAll()
         {
             return _repositorio.GetAll();
@@ -62,6 +63,27 @@ namespace ApiWeb.Controllers
             produto.Preco = model.Preco;
             produto.Quantidade = model.Quantidade;
 
+            _repositorio.Save(produto);
+
+            return new ResultViewModel
+            {
+                Sucesso = true,
+                Mensagem = "Produto cadastrado com sucesso!",
+                Data = produto
+            };
+        }
+        #endregion
+
+        #region HttpPost
+        /// <summary>
+        /// Solução alternativa para versionamento v1, v2, v3... etc;
+        /// </summary>
+        /// <param name="produto"></param>
+        /// <returns></returns>
+        [Route("v2/produto")]
+        [HttpPost]
+        public ResultViewModel Post([FromBody] Produto produto)
+        {
             _repositorio.Save(produto);
 
             return new ResultViewModel
